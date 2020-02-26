@@ -1,0 +1,73 @@
+import numpy as np
+import json
+import sys
+import time
+
+def simple_integration(Nx,Ny):
+    '''
+    A simple function to compute the integral of the funciton
+
+    \int_0^1 \int_0^1 1/(1-x*y) dx dy = pi^2/6
+
+    '''
+
+    dx = 1.0/Nx
+    dy = 1.0/Ny
+
+    s = 0.0
+    
+    for i in range(0,Nx):
+
+        xi = float(i*dx) 
+        
+        for j in range(0,Ny):
+            
+            yj = float(j*dy)
+            s+= (1.0/(1.0-xi*yj))*dx*dy
+    
+    return s
+
+
+# The first element is the input file
+input_file = str(sys.argv[1])
+
+# The name of the oputput file
+output_file = "out.txt"
+
+
+try:
+    print('input file name: ', input_file)
+except:
+    print('Error: No input file')
+    exit()
+
+
+# The main code that will be run 
+with open(input_file,'r') as json_file:
+    data = json.load(json_file)
+
+param1 = data['parameter1']
+param2 = data['parameter2']
+
+print('parameter1:', param1)
+print('parameter2:', param2)
+
+
+t1 = time.time()
+result = simple_integration(Nx=param1,Ny=param2)
+t2 = time.time()
+
+
+f = open(output_file,'w')
+
+s = 'Execution time (s): {}'.format(t2-t1)+'\n'
+print(s)
+f.write(s)
+
+s = 'result : {}'.format(result)+'\n'
+print(s)
+f.write(s)
+f.close()
+
+
+

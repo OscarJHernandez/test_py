@@ -34,7 +34,11 @@ ENTRYPOINT ["/bin/bash", "-c"]
 CMD ["source activate test && python main.py container_input/input.json" ]
 ```
 
-After writing the dockerfile we can build the image using the following command:
+After writing the dockerfile we can build the image using the following commands:
+
+```
+$ sudo service docker start
+```
 
 ```
 $ docker build -t test .

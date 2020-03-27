@@ -40,6 +40,17 @@ After writing the dockerfile we can build the image using the following command:
 $ docker build -t test .
 ```
 
+## Saving the Docker Image to a file
+```
+$ docker save -o ./test.tar <image name>
+```
+
+## Loading the Docker Image from a file
+```
+$ docker load -i <path to the image tar file>
+```
+
+
 ## Running the image
 
 After building the image we can run the image using the following command:
